@@ -1,0 +1,45 @@
+description: >
+  Runs tests using the provided configuration parameters
+
+parameters:
+  version:
+    type: string
+    description: 'The version of the underlying smack-sint-server-extensions jar file to use.'
+    default: '1.1'
+  ipAddress:
+    type: string
+    description: 'The IP address of the server under test'
+    default: '127.0.0.1'
+  domain:
+    type: string
+    description: 'XMPP domain name of server under test'
+    default: 'example.org'
+  timeout:
+    type: string
+    description: 'Amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out.'
+    default: '60000'
+  adminAccountUsername:
+    type: string
+    description: 'Account name of a pre-existing user that is allowed to create other users, per XEP-0133. If not provided, In-band registration (XEP-0077) will be used.'
+    default: ''
+  adminAccountPassword:
+    type: string
+    description: 'Password for the admin account.'
+    default: ''
+  disabledTests:
+    type: string
+    description: 'Comma-separated list of tests that are to be skipped (eg: "EntityCapsTest,SoftwareInfoIntegrationTest")'
+    default: ''
+
+steps:
+  - run:
+      environment:
+        PARAM_VERSION: <<parameters.version>>
+        PARAM_IP_ADDRESS: <<parameters.ipAddress>>
+        PARAM_DOMAIN: <<parameters.domain>>
+        PARAM_TIMEOUT: <<parameters.timeout>>
+        PARAM_ADMIN_ACCOUNT_USERNAME: <<parameters.adminAccountUsername>>
+        PARAM_ADMIN_ACCOUNT_PASSWORD: <<parameters.adminAccountPassword>>
+        PARAM_DISABLED_TESTS: <<parameters.disabledTests>>
+      name: Run Tests
+      command: <<include(scripts/test.sh)>>
