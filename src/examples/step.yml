@@ -1,0 +1,36 @@
+description: >
+  Run an interop tests step as part of an XMPP server build process
+
+usage:
+  version: 2.1
+
+  orbs:
+    xmpp-interop-tests: xmpp-interop-tests/tests@1.0.0
+
+  jobs:
+    build:
+      steps:
+        - run: echo "Build your server here"
+        - persist_to_workspace:
+            paths:
+              - ./my-server
+    test:
+      steps:
+        - run:
+            command: ./my-server/run.sh
+            background: true
+        - xmpp-interop-tests/test:
+            ipAddress: 127.0.0.1
+            domain: example.org
+            timeout: 60000
+            adminAccountUsername: admin
+            adminAccountPassword: password
+            disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
+
+  workflows:
+    build-and-test-my-server:
+      jobs:
+        - build
+        - test:
+            requires:
+              - build
