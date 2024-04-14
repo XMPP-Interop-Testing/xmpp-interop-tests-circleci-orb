@@ -9,12 +9,16 @@ usage:
 
   jobs:
     build:
+      docker:
+        - image: cimg/base:2024.02
       steps:
         - run: echo "Build your server here"
         - persist_to_workspace:
             paths:
               - ./my-server
     test:
+      docker:
+        - image: cimg/openjdk:17.0
       steps:
         - run:
             command: ./my-server/run.sh
