@@ -6,7 +6,3 @@ description: >
 display:
   home_url: "https://xmpp-interop-testing.github.io/"
   source_url: "https://github.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb"
-
-# If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
-# orbs:
-#  hello: circleci/hello-build@0.0.5
