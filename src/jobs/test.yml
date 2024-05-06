@@ -2,6 +2,9 @@ description: >
   Sample description
 # What will this job do?
 
+docker:
+  - image: cimg/openjdk:17.0
+
 parameters:
   version:
     type: string
