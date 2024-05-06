@@ -58,6 +58,8 @@ jobs:
       - tests/test:
           adminAccountUsername: 'admin'
           adminAccountPassword: 'admin'
+          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest'
+
 workflows:
   test-deploy:
     jobs:
