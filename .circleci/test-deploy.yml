@@ -20,8 +20,6 @@ release-filters: &release-filters
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
 jobs:
-  # Create jobs to test the commands of your orbs.
-  # You may want to add additional validation steps to ensure the commands are working as expected.
   command-test:
     docker:
       - image: cimg/openjdk:17.0
@@ -54,7 +52,7 @@ jobs:
           name: 'Wait for Openfire Admin Console to be available'
           command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9090/login.jsp
           
-      # Run your orb's commands to validate them.
+      # After lots of setup, test the command
       - tests/test:
           adminAccountUsername: 'admin'
           adminAccountPassword: 'admin'
@@ -63,18 +61,15 @@ jobs:
 workflows:
   test-deploy:
     jobs:
-      # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
-      # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - command-test:
           filters: *filters
-      # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
       - orb-tools/publish:
           orb_name: interop-test/tests
           vcs_type: << pipeline.project.type >>
           pub_type: production
-          # Ensure this job requires all test jobs and the pack job.
+          # There's no test of the job here, but that's just a wrapper for the command.
           requires:
             - orb-tools/pack
             - command-test
