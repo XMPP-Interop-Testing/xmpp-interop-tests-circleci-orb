@@ -1,6 +1,5 @@
 description: >
-  Sample description
-# What will this job do?
+  Runs tests using the provided configuration parameters
 
 docker:
   - image: cimg/openjdk:17.0
