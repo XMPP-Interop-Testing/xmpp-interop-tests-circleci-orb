@@ -51,8 +51,8 @@ jobs:
             sleep 6000
           background: true
       - run:
-          name: 'Wait for Openfire to start'
-          command: sleep 10
+          name: 'Wait for Openfire Admin Console to be available'
+          command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9090/login.jsp
           
       # Run your orb's commands to validate them.
       - tests/test:
