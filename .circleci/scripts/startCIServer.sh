@@ -49,12 +49,12 @@ function launchOpenfire {
 	chmod +x "${OPENFIRE_SHELL_SCRIPT}"
 
 	# Replace standard config with demoboot config
-	rm -f ${BASEDIR}/conf/openfire.xml
-	cp ${BASEDIR}/conf/openfire-demoboot.xml \
-		${BASEDIR}/conf/openfire.xml
+	rm -f "${BASEDIR}/conf/openfire.xml"
+	cp "${BASEDIR}/conf/openfire-demoboot.xml" \
+		"${BASEDIR}/conf/openfire.xml"
 
 	# Replace the default XMPP domain name ('example.org') that's in the demoboot config with the configured domain name.
-	sed -i -e 's/example.org/'"${HOST}"'/g' ${BASEDIR}/conf/openfire.xml
+	sed -i -e 's/example.org/'"${HOST}"'/g' "${BASEDIR}/conf/openfire.xml"
 
 	echo "Starting Openfire…"
 	"${OPENFIRE_SHELL_SCRIPT}" 
