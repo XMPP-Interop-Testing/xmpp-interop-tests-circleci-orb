@@ -29,23 +29,12 @@ jobs:
           name: Fetch Openfire
           command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v4.8.1/openfire_4_8_1.tar.gz" -o openfire.tar.gz
       - run:
-          name: Fetch Openfire utility scripts
-          command: |
-            mkdir -p scripts
-            cd scripts
-            git init
-            git remote add -f origin git@github.com:XMPP-Interop-Testing/Openfire-CircleCI.git
-            git config core.sparseCheckout true
-            echo ".github" >> .git/info/sparse-checkout
-            git pull origin main
-            cd ..
-      - run:
           name: 'Extract Openfire'
           command: tar -xzf openfire.tar.gz
       - run:
           name: 'Run Openfire'
           command: |
-            scripts/.github/actions/startserver-action/startCIServer.sh -i "127.0.0.1" -h "example.org" -b "openfire"
+            .circleci/scripts/startCIServer.sh -i "127.0.0.1" -h "example.org" -b "openfire"
             sleep 6000
           background: true
       - run:
