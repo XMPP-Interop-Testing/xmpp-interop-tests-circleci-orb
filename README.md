@@ -38,6 +38,8 @@ The Orb can be configured using the following inputs:
     adminAccountUsername: admin
     adminAccountPassword: password
     disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
+    disabledSpecifications: XEP-0352
+    logDir: ./logs
 ```
 
 ## Usage Example
