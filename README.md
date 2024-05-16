@@ -1,39 +1,95 @@
-# Orb Template
-
+# xmpp-interop-tests-circleci-orb
 
 [![CircleCI Build Status](https://circleci.com/gh/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/interop-test/tests.svg)](https://circleci.com/developer/orbs/orb/interop-test/tests) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
+A CircleCI Orb that performs XMPP interoperability tests on an XMPP domain.
 
+For more information, please visit our project website at https://xmpp-interop-testing.github.io/
 
-A project template for Orbs.
+## Test Account Provisioning
+The Orb will typically execute various tests. Each test will use a fresh set of XMPP user accounts. These are
+automatically provisioned by the testing framework. They will be removed after the test execution.
 
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
+The following strategies for test account provisioning are supported:
+- By default, the test accounts are provisioned using XMPP's "In-band Registration" functionality (as defined in
+  [XEP-0077](https://xmpp.org/extensions/xep-0077.html)).
+- Alternatively, test accounts can be provisioned using XMPP 'Ad-hoc commands', as specified in
+  [XEP-0133: Service Administration](https://xmpp.org/extensions/xep-0133.html). To enable this way of provisioning, the
+  Orb's configuration must include the optional `adminAccountUsername` and `adminAccountPassword` inputs (as
+  documented below).
 
-_**Edit this area to include a custom title and description.**_
+## Inputs
+The Orb can be configured using the following inputs:
+- `ipAddress`: the IP address of the server under test. Default value: `127.0.0.1`
+- `domain`: the XMPP domain name of server under test. Default value: `example.org`
+- `timeout`: the amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out. Default value: `60000` (one minute)
+- `adminAccountUsername`: _(optional)_ The account name of a pre-existing user that is allowed to create other users, per [XEP-0133](https://xmpp.org/extensions/xep-0133.html). If not provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
+- `adminAccountPassword`: _(optional)_ The password of the admin account.
+- `disabledTests`: _(optional)_ A comma-separated list of tests that are to be skipped. For example: `EntityCapsTest,SoftwareInfoIntegrationTest`
+- `disabledSpecifications`: _(optional)_ A comma-separated list of specifications (not case-sensitive) that are to be skipped. For example: `XEP-0045,XEP-0060`
+- `logDir`: _(optional)_ The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist. Default value: `./output`
 
----
+## Basic Configuration
+```yaml
+- xmpp-interop-tests/test:
+    ipAddress: 127.0.0.1
+    domain: example.org
+    timeout: 60000
+    adminAccountUsername: admin
+    adminAccountPassword: password
+    disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
+```
 
-## Resources
+## Usage Example
+It is expected that this Orb is used in a continuous integration flow that creates a new build of the XMPP server
+that is to be the subject of the tests.
 
-[CircleCI Orb Registry Page](https://circleci.com/developer/orbs/orb/interop-test/tests) - The official registry page of this orb for all versions, executors, commands, and jobs described.
+Very generically, the xmpp-interop-tests-circleci-orb is expected to be part of such a flow in this manner:
+1. Compile and build server software
+2. Start server
+3. **Invoke xmpp-interop-tests-circleci-orb**
 
-[CircleCI Orb Docs](https://circleci.com/docs/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
+This could look something like the flow below. Note that all but the third step in this flow are placeholders. They need to be replaced by steps that are specific to the server that is being build and tested.
 
-### How to Contribute
+```yaml
+description: >
+  Run an interop tests step as part of an XMPP server build process
 
-We welcome [issues](https://github.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb/issues) to and [pull requests](https://github.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb/pulls) against this repository!
+usage:
+  version: 2.1
 
-### How to Publish An Update
-1. Merge pull requests with desired changes to the main branch.
-    - For the best experience, squash-and-merge and use [Conventional Commit Messages](https://conventionalcommits.org/).
-2. Find the current version of the orb.
-    - You can run `circleci orb info interop-test/tests | grep "Latest"` to see the current version.
-3. Create a [new Release](https://github.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb/releases/new) on GitHub.
-    - Click "Choose a tag" and _create_ a new [semantically versioned](http://semver.org/) tag. (ex: v1.0.0)
-      - We will have an opportunity to change this before we publish if needed after the next step.
-4.  Click _"+ Auto-generate release notes"_.
-    - This will create a summary of all of the merged pull requests since the previous release.
-    - If you have used _[Conventional Commit Messages](https://conventionalcommits.org/)_ it will be easy to determine what types of changes were made, allowing you to ensure the correct version tag is being published.
-5. Now ensure the version tag selected is semantically accurate based on the changes included.
-6. Click _"Publish Release"_.
-    - This will push a new tag and trigger your publishing pipeline on CircleCI.
+  orbs:
+    xmpp-interop-tests: xmpp-interop-tests/tests@1.0.0
+
+  jobs:
+    build:
+      docker:
+        - image: cimg/base:2024.02
+      steps:
+        - run: echo "Build your server here"
+        - persist_to_workspace:
+            paths:
+              - ./my-server
+    test:
+      docker:
+        - image: cimg/openjdk:17.0
+      steps:
+        - run:
+            command: ./my-server/run.sh
+            background: true
+        - xmpp-interop-tests/test:
+            ipAddress: 127.0.0.1
+            domain: example.org
+            timeout: 60000
+            adminAccountUsername: admin
+            adminAccountPassword: password
+            disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
+
+  workflows:
+    build-and-test-my-server:
+      jobs:
+        - build
+        - test:
+            requires:
+              - build
+```
