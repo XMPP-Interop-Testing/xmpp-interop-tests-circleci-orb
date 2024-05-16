@@ -30,6 +30,10 @@ parameters:
     type: string
     description: 'Comma-separated list of tests that are to be skipped (eg: "EntityCapsTest,SoftwareInfoIntegrationTest")'
     default: ''
+  logDir:
+    type: string
+    description: 'The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist.'
+    default: './output'
 
 steps:
   - run:
@@ -41,5 +45,6 @@ steps:
         PARAM_ADMIN_ACCOUNT_PASSWORD: <<parameters.adminAccountPassword>>
         PARAM_DISABLED_SPECIFICATIONS: <<parameters.disabledSpecifications>>
         PARAM_DISABLED_TESTS: <<parameters.disabledTests>>
+        PARAM_LOG_DIR: <<parameters.logDir>>
       name: Run Tests
       command: <<include(scripts/test.sh)>>
