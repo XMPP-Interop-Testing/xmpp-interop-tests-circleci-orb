@@ -33,6 +33,10 @@ parameters:
     type: string
     description: 'Comma-separated list of tests that are to be skipped (eg: "EntityCapsTest,SoftwareInfoIntegrationTest")'
     default: ''
+  logDir:
+    type: string
+    description: 'The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist.'
+    default: './output'
 
 steps:
   - test:
@@ -43,3 +47,4 @@ steps:
       adminAccountPassword: << parameters.adminAccountPassword >>
       disabledSpecifications: << parameters.disabledSpecifications >>
       disabledTests: << parameters.disabledTests >>
+      logDir: << parameters.logDir >>
