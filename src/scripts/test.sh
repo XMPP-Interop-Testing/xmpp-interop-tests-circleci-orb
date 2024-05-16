@@ -8,6 +8,7 @@ DOMAIN=$(circleci env subst "${PARAM_DOMAIN}")
 TIMEOUT=$(circleci env subst "${PARAM_TIMEOUT}")
 ADMIN_ACCOUNT_USERNAME=$(circleci env subst "${PARAM_ADMIN_ACCOUNT_USERNAME}")
 ADMIN_ACCOUNT_PASSWORD=$(circleci env subst "${PARAM_ADMIN_ACCOUNT_PASSWORD}")
+DISABLED_SPECIFICATIONS=$(circleci env subst "${PARAM_DISABLED_SPECIFICATIONS}")
 DISABLED_TESTS=$(circleci env subst "${PARAM_DISABLED_TESTS}")
 
 # Download the JAR file
@@ -23,5 +24,6 @@ java \
     -Dsinttest.adminAccountPassword="$ADMIN_ACCOUNT_PASSWORD" \
     -Dsinttest.enabledConnections=tcp \
     -Dsinttest.dnsResolver=javax \
+    -Dsinttest.disabledSpecifications="$DISABLED_SPECIFICATIONS"  \
     -Dsinttest.disabledTests="$DISABLED_TESTS" \
     -jar "smack-sint-server-extensions-$VERSION-jar-with-dependencies.jar"

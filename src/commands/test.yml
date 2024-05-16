@@ -22,6 +22,10 @@ parameters:
     type: string
     description: 'Password for the admin account.'
     default: ''
+  disabledSpecifications:
+    type: string
+    description: 'A comma-separated list of specifications (not case-sensitive) that are to be skipped. For example: XEP-0045,XEP-0060'
+    default: ''
   disabledTests:
     type: string
     description: 'Comma-separated list of tests that are to be skipped (eg: "EntityCapsTest,SoftwareInfoIntegrationTest")'
@@ -35,6 +39,7 @@ steps:
         PARAM_TIMEOUT: <<parameters.timeout>>
         PARAM_ADMIN_ACCOUNT_USERNAME: <<parameters.adminAccountUsername>>
         PARAM_ADMIN_ACCOUNT_PASSWORD: <<parameters.adminAccountPassword>>
+        PARAM_DISABLED_SPECIFICATIONS: <<parameters.disabledSpecifications>>
         PARAM_DISABLED_TESTS: <<parameters.disabledTests>>
       name: Run Tests
       command: <<include(scripts/test.sh)>>
