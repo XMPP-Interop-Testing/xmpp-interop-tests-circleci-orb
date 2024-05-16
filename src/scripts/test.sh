@@ -1,7 +1,8 @@
 #!/bin/bash
 
+VERSION=1.0
+
 # Get variables from the environment
-VERSION=$(circleci env subst "${PARAM_VERSION}")
 IP_ADDRESS=$(circleci env subst "${PARAM_IP_ADDRESS}")
 DOMAIN=$(circleci env subst "${PARAM_DOMAIN}")
 TIMEOUT=$(circleci env subst "${PARAM_TIMEOUT}")
