@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0
+VERSION=1.2
 
 # Get variables from the environment
 IP_ADDRESS=$(circleci env subst "${PARAM_IP_ADDRESS}")
