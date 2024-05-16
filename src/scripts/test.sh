@@ -22,5 +22,5 @@ java \
     -Dsinttest.adminAccountPassword="$ADMIN_ACCOUNT_PASSWORD" \
     -Dsinttest.enabledConnections=tcp \
     -Dsinttest.dnsResolver=javax \
-    -Dsinttest.disabledTests="-Dsinttest.disabledTests=$DISABLED_TESTS" \
+    -Dsinttest.disabledTests="$DISABLED_TESTS" \
     -jar "smack-sint-server-extensions-$VERSION-jar-with-dependencies.jar"
