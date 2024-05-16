@@ -25,6 +25,10 @@ parameters:
     type: string
     description: 'Password for the admin account.'
     default: ''
+  disabledSpecifications:
+    type: string
+    description: 'A comma-separated list of specifications (not case-sensitive) that are to be skipped. For example: XEP-0045,XEP-0060'
+    default: ''
   disabledTests:
     type: string
     description: 'Comma-separated list of tests that are to be skipped (eg: "EntityCapsTest,SoftwareInfoIntegrationTest")'
@@ -37,4 +41,5 @@ steps:
       timeout: << parameters.timeout >>
       adminAccountUsername: << parameters.adminAccountUsername >>
       adminAccountPassword: << parameters.adminAccountPassword >>
+      disabledSpecifications: << parameters.disabledSpecifications >>
       disabledTests: << parameters.disabledTests >>
