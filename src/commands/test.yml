@@ -2,10 +2,6 @@ description: >
   Runs tests using the provided configuration parameters
 
 parameters:
-  version:
-    type: string
-    description: 'The version of the underlying smack-sint-server-extensions jar file to use.'
-    default: '1.1'
   ipAddress:
     type: string
     description: 'The IP address of the server under test'
@@ -34,7 +30,6 @@ parameters:
 steps:
   - run:
       environment:
-        PARAM_VERSION: <<parameters.version>>
         PARAM_IP_ADDRESS: <<parameters.ipAddress>>
         PARAM_DOMAIN: <<parameters.domain>>
         PARAM_TIMEOUT: <<parameters.timeout>>
