@@ -7,10 +7,12 @@ A CircleCI Orb that performs XMPP interoperability tests on an XMPP domain.
 For more information, please visit our project website at https://xmpp-interop-testing.github.io/
 
 ## Test Account Provisioning
+
 The Orb will typically execute various tests. Each test will use a fresh set of XMPP user accounts. These are
 automatically provisioned by the testing framework. They will be removed after the test execution.
 
 The following strategies for test account provisioning are supported:
+
 - By default, the test accounts are provisioned using XMPP's "In-band Registration" functionality (as defined in
   [XEP-0077](https://xmpp.org/extensions/xep-0077.html)).
 - Alternatively, test accounts can be provisioned using XMPP 'Ad-hoc commands', as specified in
@@ -19,7 +21,9 @@ The following strategies for test account provisioning are supported:
   documented below).
 
 ## Inputs
+
 The Orb can be configured using the following inputs:
+
 - `ipAddress`: the IP address of the server under test. Default value: `127.0.0.1`
 - `domain`: the XMPP domain name of server under test. Default value: `example.org`
 - `timeout`: the amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out. Default value: `60000` (one minute)
@@ -30,6 +34,7 @@ The Orb can be configured using the following inputs:
 - `logDir`: _(optional)_ The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist. Default value: `./output`
 
 ## Basic Configuration
+
 ```yaml
 - xmpp-interop-tests/test:
     ipAddress: 127.0.0.1
@@ -43,10 +48,12 @@ The Orb can be configured using the following inputs:
 ```
 
 ## Usage Example
+
 It is expected that this Orb is used in a continuous integration flow that creates a new build of the XMPP server
 that is to be the subject of the tests.
 
 Very generically, the xmpp-interop-tests-circleci-orb is expected to be part of such a flow in this manner:
+
 1. Compile and build server software
 2. Start server
 3. **Invoke xmpp-interop-tests-circleci-orb**
