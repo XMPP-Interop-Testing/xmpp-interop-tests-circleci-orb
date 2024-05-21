@@ -16,7 +16,7 @@ parameters:
   timeout:
     type: string
     description: 'Amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out.'
-    default: '60000'
+    default: '5000'
   adminAccountUsername:
     type: string
     description: 'Account name of a pre-existing user that is allowed to create other users, per XEP-0133. If not provided, In-band registration (XEP-0077) will be used.'

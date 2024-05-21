@@ -26,7 +26,7 @@ The Orb can be configured using the following inputs:
 
 - `ipAddress`: the IP address of the server under test. Default value: `127.0.0.1`
 - `domain`: the XMPP domain name of server under test. Default value: `example.org`
-- `timeout`: the amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out. Default value: `60000` (one minute)
+- `timeout`: the amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out. Default value: `5000` (five seconds)
 - `adminAccountUsername`: _(optional)_ The account name of a pre-existing user that is allowed to create other users, per [XEP-0133](https://xmpp.org/extensions/xep-0133.html). If not provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
 - `adminAccountPassword`: _(optional)_ The password of the admin account.
 - `disabledTests`: _(optional)_ A comma-separated list of tests that are to be skipped. For example: `EntityCapsTest,SoftwareInfoIntegrationTest`
@@ -39,7 +39,7 @@ The Orb can be configured using the following inputs:
 - xmpp-interop-tests/test:
     ipAddress: 127.0.0.1
     domain: example.org
-    timeout: 60000
+    timeout: 5000
     adminAccountUsername: admin
     adminAccountPassword: password
     disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
@@ -89,7 +89,7 @@ usage:
         - xmpp-interop-tests/test:
             ipAddress: 127.0.0.1
             domain: example.org
-            timeout: 60000
+            timeout: 5000
             adminAccountUsername: admin
             adminAccountPassword: password
             disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
