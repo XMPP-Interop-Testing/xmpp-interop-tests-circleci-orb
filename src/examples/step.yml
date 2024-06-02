@@ -5,7 +5,7 @@ usage:
   version: 2.1
 
   orbs:
-    xmpp-interop-tests: xmpp-interop-tests/tests@1.0.0
+    xmpp-interop-tests: xmpp-interop-tests/test@1.0.0
 
   jobs:
     build:
