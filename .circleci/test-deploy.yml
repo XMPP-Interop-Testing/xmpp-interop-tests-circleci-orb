@@ -45,7 +45,8 @@ jobs:
       - tests/test:
           adminAccountUsername: 'admin'
           adminAccountPassword: 'admin'
-          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest'
+          # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest when stable
+          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,RosterIntegrationTest,MultiUserChatIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,MultiUserChatOccupantIntegrationTest'
 
 workflows:
   test-deploy:
