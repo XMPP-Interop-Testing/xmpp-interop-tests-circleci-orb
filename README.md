@@ -1,6 +1,6 @@
 # xmpp-interop-tests-circleci-orb
 
-[![CircleCI Build Status](https://circleci.com/gh/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/interop-test/tests.svg)](https://circleci.com/developer/orbs/orb/interop-test/tests) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+[![CircleCI Build Status](https://circleci.com/gh/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/xmpp-interop-tests/test.svg)](https://circleci.com/developer/orbs/orb/xmpp-interop-test/test) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/XMPP-Interop-Testing/xmpp-interop-tests-circleci-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 A CircleCI Orb that performs XMPP interoperability tests on an XMPP domain.
 

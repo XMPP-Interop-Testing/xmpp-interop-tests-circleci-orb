@@ -56,7 +56,7 @@ workflows:
       - orb-tools/pack:
           filters: *release-filters
       - orb-tools/publish:
-          orb_name: interop-test/tests
+          orb_name: xmpp-interop-tests/test
           vcs_type: << pipeline.project.type >>
           pub_type: production
           # There's no test of the job here, but that's just a wrapper for the command.
