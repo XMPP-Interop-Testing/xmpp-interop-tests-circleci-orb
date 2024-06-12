@@ -3,7 +3,7 @@
 VERSION=1.2
 
 # Get variables from the environment
-IP_ADDRESS=$(circleci env subst "${PARAM_IP_ADDRESS}")
+HOST=$(circleci env subst "${PARAM_HOST}")
 DOMAIN=$(circleci env subst "${PARAM_DOMAIN}")
 TIMEOUT=$(circleci env subst "${PARAM_TIMEOUT}")
 ADMIN_ACCOUNT_USERNAME=$(circleci env subst "${PARAM_ADMIN_ACCOUNT_USERNAME}")
@@ -15,10 +15,9 @@ LOG_DIR=$(circleci env subst "${PARAM_LOG_DIR}")
 # Download the JAR file
 curl -L "https://github.com/XMPP-Interop-Testing/smack-sint-server-extensions/releases/download/v$VERSION/smack-sint-server-extensions-$VERSION-jar-with-dependencies.jar" -o "smack-sint-server-extensions-$VERSION-jar-with-dependencies.jar"
 
-echo "$IP_ADDRESS $DOMAIN" | sudo tee -a /etc/hosts
-
 java \
     -Dsinttest.service="$DOMAIN" \
+    -Dsinttest.host="$HOST" \
     -Dsinttest.securityMode=disabled \
     -Dsinttest.replyTimeout="$TIMEOUT" \
     -Dsinttest.adminAccountUsername="$ADMIN_ACCOUNT_USERNAME" \

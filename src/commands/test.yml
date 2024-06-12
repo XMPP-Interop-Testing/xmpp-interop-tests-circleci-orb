@@ -2,9 +2,9 @@ description: >
   Runs tests using the provided configuration parameters
 
 parameters:
-  ipAddress:
+  host:
     type: string
-    description: 'The IP address of the server under test'
+    description: 'IP address or DNS name of the XMPP service to run the tests on.'
     default: '127.0.0.1'
   domain:
     type: string
@@ -38,7 +38,7 @@ parameters:
 steps:
   - run:
       environment:
-        PARAM_IP_ADDRESS: <<parameters.ipAddress>>
+        PARAM_HOST: <<parameters.host>>
         PARAM_DOMAIN: <<parameters.domain>>
         PARAM_TIMEOUT: <<parameters.timeout>>
         PARAM_ADMIN_ACCOUNT_USERNAME: <<parameters.adminAccountUsername>>

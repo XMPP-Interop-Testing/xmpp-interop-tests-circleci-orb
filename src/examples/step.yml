@@ -24,7 +24,7 @@ usage:
             command: ./my-server/run.sh
             background: true
         - xmpp-interop-tests/test:
-            ipAddress: 127.0.0.1
+            host: 127.0.0.1
             domain: example.org
             timeout: 5000
             adminAccountUsername: admin
