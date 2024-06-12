@@ -24,7 +24,7 @@ The following strategies for test account provisioning are supported:
 
 The Orb can be configured using the following inputs:
 
-- `ipAddress`: the IP address of the server under test. Default value: `127.0.0.1`
+- `host`: IP address or DNS name of the XMPP service to run the tests on. Default value: `127.0.0.1`
 - `domain`: the XMPP domain name of server under test. Default value: `example.org`
 - `timeout`: the amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out. Default value: `5000` (five seconds)
 - `adminAccountUsername`: _(optional)_ The account name of a pre-existing user that is allowed to create other users, per [XEP-0133](https://xmpp.org/extensions/xep-0133.html). If not provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
@@ -37,7 +37,7 @@ The Orb can be configured using the following inputs:
 
 ```yaml
 - xmpp-interop-tests/test:
-    ipAddress: 127.0.0.1
+    host: 127.0.0.1
     domain: example.org
     timeout: 5000
     adminAccountUsername: admin
@@ -87,7 +87,7 @@ usage:
             command: ./my-server/run.sh
             background: true
         - xmpp-interop-tests/test:
-            ipAddress: 127.0.0.1
+            host: 127.0.0.1
             domain: example.org
             timeout: 5000
             adminAccountUsername: admin

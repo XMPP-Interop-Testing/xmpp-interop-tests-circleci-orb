@@ -5,9 +5,9 @@ docker:
   - image: cimg/openjdk:17.0
 
 parameters:
-  ipAddress:
+  host:
     type: string
-    description: 'The IP address of the server under test'
+    description: 'IP address or DNS name of the XMPP service to run the tests on.'
     default: '127.0.0.1'
   domain:
     type: string
@@ -40,7 +40,7 @@ parameters:
 
 steps:
   - test:
-      ipAddress: << parameters.ipAddress >>
+      host: << parameters.host >>
       domain: << parameters.domain >>
       timeout: << parameters.timeout >>
       adminAccountUsername: << parameters.adminAccountUsername >>
