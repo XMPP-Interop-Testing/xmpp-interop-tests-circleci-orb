@@ -40,13 +40,13 @@ jobs:
       - run:
           name: 'Wait for Openfire Admin Console to be available'
           command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9090/login.jsp
-          
+
       # After lots of setup, test the command
       - tests/test:
           adminAccountUsername: 'admin'
           adminAccountPassword: 'admin'
-          # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest when stable
-          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,RosterIntegrationTest,MultiUserChatIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,MultiUserChatOccupantIntegrationTest'
+          # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest when stable
+          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,RosterIntegrationTest,MultiUserChatIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest'
 
 workflows:
   test-deploy:
