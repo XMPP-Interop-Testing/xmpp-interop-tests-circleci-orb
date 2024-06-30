@@ -34,7 +34,7 @@ jobs:
       - run:
           name: 'Run Openfire'
           command: |
-            .circleci/scripts/startCIServer.sh -i "127.0.0.1" -h "example.org" -b "openfire"
+            .circleci/scripts/startCIServer.sh -h "example.org" -b "openfire"
             sleep 6000
           background: true
       - run:
