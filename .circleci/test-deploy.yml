@@ -47,6 +47,10 @@ jobs:
           adminAccountPassword: 'admin'
           # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest when stable
           disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,RosterIntegrationTest,MultiUserChatIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest'
+      
+      - store_artifacts:
+          path: ./output
+          destination: test-output
 
 workflows:
   test-deploy:
