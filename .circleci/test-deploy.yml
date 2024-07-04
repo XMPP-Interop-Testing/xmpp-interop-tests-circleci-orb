@@ -27,7 +27,7 @@ jobs:
       - checkout
       - run:
           name: Fetch Openfire
-          command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v4.8.1/openfire_4_8_1.tar.gz" -o openfire.tar.gz
+          command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v4.8.2/openfire_4_8_2.tar.gz" -o openfire.tar.gz
       - run:
           name: 'Extract Openfire'
           command: tar -xzf openfire.tar.gz
@@ -47,7 +47,6 @@ jobs:
           adminAccountPassword: 'admin'
           # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest when stable
           disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,RosterIntegrationTest,MultiUserChatIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest'
-      
       - store_artifacts:
           path: ./output
           destination: test-output
