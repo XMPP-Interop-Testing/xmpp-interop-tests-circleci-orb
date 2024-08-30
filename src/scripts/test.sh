@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.3.1
+VERSION=1.3.2
 
 # Get variables from the environment
 HOST=$(circleci env subst "${PARAM_HOST}")
@@ -26,7 +26,7 @@ java \
     -Dsinttest.dnsResolver=javax \
     -Dsinttest.disabledSpecifications="$DISABLED_SPECIFICATIONS"  \
     -Dsinttest.disabledTests="$DISABLED_TESTS" \
-    -Dsinttest.testRunResultProcessors=org.igniterealtime.smack.inttest.SmackIntegrationTestFramework\$JulTestRunResultProcessor,org.igniterealtime.smack.inttest.util.JUnitXmlTestRunResultProcessor \
+    -Dsinttest.testRunResultProcessors=org.igniterealtime.smack.inttest.util.StdOutTestRunResultProcessor,org.igniterealtime.smack.inttest.util.JUnitXmlTestRunResultProcessor \
     -Dsinttest.debugger="org.igniterealtime.smack.inttest.util.FileLoggerFactory" \
     -DlogDir="$LOG_DIR" \
     -jar "smack-sint-server-extensions-$VERSION-jar-with-dependencies.jar"
