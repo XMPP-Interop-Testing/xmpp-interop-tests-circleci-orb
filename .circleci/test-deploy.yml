@@ -45,8 +45,8 @@ jobs:
       - tests/test:
           adminAccountUsername: 'admin'
           adminAccountPassword: 'admin'
-          # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest when stable
-          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,RosterIntegrationTest,MultiUserChatIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest'
+          # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest,MultiUserChatOccupantPMIntegrationTest,MultiUserChatAdminBanIntegrationTest when stable
+          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,MultiUserChatOccupantIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest,MultiUserChatOccupantPMIntegrationTest,MultiUserChatAdminBanIntegrationTest'
       - store_artifacts:
           path: ./output
           destination: test-output
