@@ -68,7 +68,7 @@ usage:
   version: 2.1
 
   orbs:
-    xmpp-interop-tests: xmpp-interop-tests/tests@1.0.0
+    interop-tests: xmpp-interop-tests/test@0.1.0
 
   jobs:
     build:
@@ -83,10 +83,12 @@ usage:
       docker:
         - image: cimg/openjdk:17.0
       steps:
+        - attach_workspace:
+          at: .
         - run:
             command: ./my-server/run.sh
             background: true
-        - xmpp-interop-tests/test:
+        - interop-tests/test:
             host: 127.0.0.1
             domain: example.org
             timeout: 5000
