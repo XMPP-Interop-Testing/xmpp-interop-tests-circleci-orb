@@ -45,10 +45,7 @@ jobs:
       - tests/test:
           adminAccountUsername: 'admin'
           adminAccountPassword: 'admin'
-          # TODO: Reenable the RosterIntegrationTest, MultiUserChatIntegrationTest, MultiUserChatRolesAffiliationsPrivilegesIntegrationTest, MultiUserChatOccupantIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest,MultiUserChatOccupantPMIntegrationTest,MultiUserChatAdminBanIntegrationTest when stable
-          disabledTests: 'EntityCapsTest,SoftwareInfoIntegrationTest,XmppConnectionIntegrationTest,StreamManagementTest,WaitForClosingStreamElementTest,IoTControlIntegrationTest,ModularXmppClientToServerConnectionLowLevelIntegrationTest,MultiUserChatOccupantIntegrationTest,MultiUserChatRolesAffiliationsPrivilegesIntegrationTest,ServiceDiscoveryIntegrationTest,VCardTempIntegrationTest,MultiUserChatOccupantPMIntegrationTest,MultiUserChatAdminBanIntegrationTest'
-          # TODO: Reenable XEP-0045 with Openfire 4.10.0
-          disabledSpecifications: 'XEP-0045'
+          enabledSpecifications: 'XEP-0115,XEP-0199,XEP-0352'
       - store_artifacts:
           path: ./output
           destination: test-output

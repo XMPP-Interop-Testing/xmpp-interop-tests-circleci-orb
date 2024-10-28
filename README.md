@@ -31,6 +31,8 @@ The Orb can be configured using the following inputs:
 - `adminAccountPassword`: _(optional)_ The password of the admin account.
 - `disabledTests`: _(optional)_ A comma-separated list of tests that are to be skipped. For example: `EntityCapsTest,SoftwareInfoIntegrationTest`
 - `disabledSpecifications`: _(optional)_ A comma-separated list of specifications (not case-sensitive) that are to be skipped. For example: `XEP-0045,XEP-0060`
+- `enabledTests`: _(optional)_ A comma-separated list of tests that are to be run. For example: `EntityCapsTest,SoftwareInfoIntegrationTest`
+- `enabledSpecifications`: _(optional)_ A comma-separated list of specifications (not case-sensitive) that are to be run. For example: `XEP-0045,XEP-0060`
 - `logDir`: _(optional)_ The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist. Default value: `./output`
 
 ## Basic Configuration
@@ -43,7 +45,7 @@ The Orb can be configured using the following inputs:
     adminAccountUsername: admin
     adminAccountPassword: password
     disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
-    disabledSpecifications: XEP-0352
+    enabledSpecifications: XEP-0352
     logDir: ./logs
 ```
 
