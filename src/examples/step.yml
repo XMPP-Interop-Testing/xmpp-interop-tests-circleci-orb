@@ -30,6 +30,7 @@ usage:
             adminAccountUsername: admin
             adminAccountPassword: password
             disabledTests: EntityCapsTest,SoftwareInfoIntegrationTest
+            enabledSpecifications: XEP-0045,XEP-0060
 
   workflows:
     build-and-test-my-server:
