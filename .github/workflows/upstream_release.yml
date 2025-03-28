@@ -41,6 +41,7 @@ jobs:
       - name: Replace the version in the action.yml file
         run: |
             sed -i "s#VERSION=.*#VERSION=${{ steps.version.outputs.file_version }}#" src/scripts/test.sh
+            sed -i "s#test@.*#test@${{ steps.version.outputs.version }}#g" README.md
         shell: bash
 
       - name: Create Pull Request
