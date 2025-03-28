@@ -38,9 +38,14 @@ jobs:
             echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
         shell: bash
 
-      - name: Replace the version in the action.yml file
+      - name: Update the default version in the test.sh file
         run: |
             sed -i "s#VERSION=.*#VERSION=${{ steps.version.outputs.file_version }}#" src/scripts/test.sh
+        shell: bash
+       
+      - name: Update the version in the README file
+        run: |
+            sed -i "s#test@.*#test@${{ steps.version.outputs.version }}#g" README.md
         shell: bash
 
       - name: Create Pull Request
