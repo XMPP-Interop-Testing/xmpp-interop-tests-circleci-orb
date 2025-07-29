@@ -27,7 +27,7 @@ jobs:
       - checkout
       - run:
           name: Fetch Openfire
-          command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v4.9.0/openfire_4_9_0.tar.gz" -o openfire.tar.gz
+          command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v5.0.1/openfire_5_0_1.tar.gz" -o openfire.tar.gz
       - run:
           name: 'Extract Openfire'
           command: tar -xzf openfire.tar.gz
