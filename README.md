@@ -70,7 +70,7 @@ usage:
   version: 2.1
 
   orbs:
-    interop-tests: xmpp-interop-tests/test@v1.6.0
+    interop-tests: xmpp-interop-tests/test@1.6.0
 
   jobs:
     build:
