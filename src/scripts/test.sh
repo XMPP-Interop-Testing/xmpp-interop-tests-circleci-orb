@@ -45,7 +45,7 @@ if [ "$ENABLED_TESTS" != "" ]; then
     JAVACMD+=("-Dsinttest.enabledTests=$ENABLED_TESTS")
 fi
 JAVACMD+=("-Dsinttest.testRunResultProcessors=org.igniterealtime.smack.inttest.util.StdOutTestRunResultProcessor,org.igniterealtime.smack.inttest.util.JUnitXmlTestRunResultProcessor")
-JAVACMD+=("-Dsinttest.debugger=org.igniterealtime.smack.inttest.util.FileLoggerFactory")
+JAVACMD+=("-Dsinttest.debugger=org.igniterealtime.smack.inttest.util.ModifiedStandardSinttestDebuggerMetaFactory")
 JAVACMD+=("-DlogDir=$LOG_DIR")
 JAVACMD+=("-jar")
 JAVACMD+=("smack-sint-server-extensions-$VERSION-jar-with-dependencies.jar")
