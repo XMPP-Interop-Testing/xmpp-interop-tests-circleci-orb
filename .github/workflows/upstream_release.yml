@@ -34,7 +34,6 @@ jobs:
             FILE_VERSION="${VERSION:1}" # Strip leading 'v'
             echo "Version: $VERSION"
             echo "File version: $FILE_VERSION"
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
             echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
         shell: bash
 
@@ -45,7 +44,7 @@ jobs:
        
       - name: Update the version in the README file
         run: |
-            sed -i "s#test@.*#test@${{ steps.version.outputs.version }}#g" README.md
+            sed -i "s#test@.*#test@${{ steps.version.outputs.file_version }}#g" README.md
         shell: bash
 
       - name: Create Pull Request
