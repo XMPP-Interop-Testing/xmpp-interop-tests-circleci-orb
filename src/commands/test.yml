@@ -16,11 +16,35 @@ parameters:
     default: '5000'
   adminAccountUsername:
     type: string
-    description: 'Account name of a pre-existing user that is allowed to create other users, per XEP-0133. If not provided, In-band registration (XEP-0077) will be used.'
+    description: 'Account name of a pre-existing user that is allowed to create other users, per XEP-0133.'
     default: ''
   adminAccountPassword:
     type: string
     description: 'Password for the admin account.'
+    default: ''
+  accountOneUsername:
+    type: string
+    description: 'The first account name of a set of three accounts used for testing.'
+    default: ''
+  accountOnePassword:
+    type: string
+    description: 'The password of the accountOneUsername account'
+    default: ''
+  accountTwoUsername:
+    type: string
+    description: 'The second account name of a set of three accounts used for testing.'
+    default: ''
+  accountTwoPassword:
+    type: string
+    description: 'The password of the accountTwoUsername account'
+    default: ''
+  accountThreeUsername:
+    type: string
+    description: 'The third account name of a set of three accounts used for testing.'
+    default: ''
+  accountThreePassword:
+    type: string
+    description: 'The password of the accountThreeUsername account'
     default: ''
   disabledSpecifications:
     type: string
@@ -51,6 +75,12 @@ steps:
         PARAM_TIMEOUT: <<parameters.timeout>>
         PARAM_ADMIN_ACCOUNT_USERNAME: <<parameters.adminAccountUsername>>
         PARAM_ADMIN_ACCOUNT_PASSWORD: <<parameters.adminAccountPassword>>
+        PARAM_ACCOUNT_ONE_USERNAME: <<parameters.accountOneUsername>>
+        PARAM_ACCOUNT_ONE_PASSWORD: <<parameters.accountOnePassword>>
+        PARAM_ACCOUNT_TWO_USERNAME: <<parameters.accountTwoUsername>>
+        PARAM_ACCOUNT_TWO_PASSWORD: <<parameters.accountTwoPassword>>
+        PARAM_ACCOUNT_THREE_USERNAME: <<parameters.accountThreeUsername>>
+        PARAM_ACCOUNT_THREE_PASSWORD: <<parameters.accountThreePassword>>
         PARAM_DISABLED_SPECIFICATIONS: <<parameters.disabledSpecifications>>
         PARAM_DISABLED_TESTS: <<parameters.disabledTests>>
         PARAM_ENABLED_SPECIFICATIONS: <<parameters.enabledSpecifications>>

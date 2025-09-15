@@ -8,6 +8,12 @@ DOMAIN=$(circleci env subst "${PARAM_DOMAIN}")
 TIMEOUT=$(circleci env subst "${PARAM_TIMEOUT}")
 ADMIN_ACCOUNT_USERNAME=$(circleci env subst "${PARAM_ADMIN_ACCOUNT_USERNAME}")
 ADMIN_ACCOUNT_PASSWORD=$(circleci env subst "${PARAM_ADMIN_ACCOUNT_PASSWORD}")
+ACCOUNT_ONE_USERNAME=$(circleci env subst "${PARAM_ACCOUNT_ONE_USERNAME}")
+ACCOUNT_ONE_PASSWORD=$(circleci env subst "${PARAM_ACCOUNT_ONE_PASSWORD}")
+ACCOUNT_TWO_USERNAME=$(circleci env subst "${PARAM_ACCOUNT_TWO_USERNAME}")
+ACCOUNT_TWO_PASSWORD=$(circleci env subst "${PARAM_ACCOUNT_TWO_PASSWORD}")
+ACCOUNT_THREE_USERNAME=$(circleci env subst "${PARAM_ACCOUNT_THREE_USERNAME}")
+ACCOUNT_THREE_PASSWORD=$(circleci env subst "${PARAM_ACCOUNT_THREE_PASSWORD}")
 DISABLED_SPECIFICATIONS=$(circleci env subst "${PARAM_DISABLED_SPECIFICATIONS}")
 DISABLED_TESTS=$(circleci env subst "${PARAM_DISABLED_TESTS}")
 ENABLED_SPECIFICATIONS=$(circleci env subst "${PARAM_ENABLED_SPECIFICATIONS}")
@@ -29,6 +35,24 @@ JAVACMD+=("-Dsinttest.adminAccountUsername=$ADMIN_ACCOUNT_USERNAME")
 fi
 if [ "$ADMIN_ACCOUNT_PASSWORD" != "" ]; then
 JAVACMD+=("-Dsinttest.adminAccountPassword=$ADMIN_ACCOUNT_PASSWORD")
+fi
+if [ "$ACCOUNT_ONE_USERNAME" != "" ]; then
+JAVACMD+=("-Dsinttest.accountOneUsername=$ACCOUNT_ONE_USERNAME")
+fi
+if [ "$ACCOUNT_ONE_PASSWORD" != "" ]; then
+JAVACMD+=("-Dsinttest.accountOnePassword=$ACCOUNT_ONE_PASSWORD")
+fi
+if [ "$ACCOUNT_TWO_USERNAME" != "" ]; then
+JAVACMD+=("-Dsinttest.accountTwoUsername=$ACCOUNT_TWO_USERNAME")
+fi
+if [ "$ACCOUNT_TWO_PASSWORD" != "" ]; then
+JAVACMD+=("-Dsinttest.accountTwoPassword=$ACCOUNT_TWO_PASSWORD")
+fi
+if [ "$ACCOUNT_THREE_USERNAME" != "" ]; then
+JAVACMD+=("-Dsinttest.accountThreeUsername=$ACCOUNT_THREE_USERNAME")
+fi
+if [ "$ACCOUNT_THREE_PASSWORD" != "" ]; then
+JAVACMD+=("-Dsinttest.accountThreePassword=$ACCOUNT_THREE_PASSWORD")
 fi
 JAVACMD+=("-Dsinttest.enabledConnections=tcp")
 JAVACMD+=("-Dsinttest.dnsResolver=javax")

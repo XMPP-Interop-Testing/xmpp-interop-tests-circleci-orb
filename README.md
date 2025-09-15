@@ -27,13 +27,28 @@ The Orb can be configured using the following inputs:
 - `host`: IP address or DNS name of the XMPP service to run the tests on. Default value: `127.0.0.1`
 - `domain`: the XMPP domain name of server under test. Default value: `example.org`
 - `timeout`: the amount of milliseconds after which an XMPP action (typically an IQ request) is considered timed out. Default value: `5000` (five seconds)
-- `adminAccountUsername`: _(optional)_ The account name of a pre-existing user that is allowed to create other users, per [XEP-0133](https://xmpp.org/extensions/xep-0133.html). If not provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
+- `adminAccountUsername`: _(optional)_ The account name of a pre-existing user that is allowed to create other users, per [XEP-0133](https://xmpp.org/extensions/xep-0133.html). See: "[Provisioning Test Accounts](#provisioning-test-accounts)"
 - `adminAccountPassword`: _(optional)_ The password of the admin account.
+- `accountOneUsername`: _(optional)_ The first account name of a set of three accounts used for testing. See: "[Provisioning Test Accounts](#provisioning-test-accounts)"
+- `accountOnePassword`: _(optional)_ The password of the accountOneUsername account.
+- `accountTwoUsername`: _(optional)_ The second account name of a set of three accounts used for testing. See: "[Provisioning Test Accounts](#provisioning-test-accounts)"
+- `accountTwoPassword`: _(optional)_ The password of the accountTwoUsername account
+- `accountThreeUsername`: _(optional)_ The third account name of a set of three accounts used for testing. See: "[Provisioning Test Accounts](#provisioning-test-accounts)"
+- `accountThreePassword`: _(optional)_ The password of the accountThreeUsername account.
 - `disabledTests`: _(optional)_ A comma-separated list of tests that are to be skipped. For example: `EntityCapsTest,SoftwareInfoIntegrationTest`
 - `disabledSpecifications`: _(optional)_ A comma-separated list of specifications (not case-sensitive) that are to be skipped. For example: `XEP-0045,XEP-0060`
 - `enabledTests`: _(optional)_ A comma-separated list of tests that are to be run. For example: `EntityCapsTest,SoftwareInfoIntegrationTest`
 - `enabledSpecifications`: _(optional)_ A comma-separated list of specifications (not case-sensitive) that are to be run. For example: `XEP-0045,XEP-0060`
 - `logDir`: _(optional)_ The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist. Default value: `./output`
+
+### Provisioning Test Accounts
+
+To be able to run the tests, the server that is being tested needs to be provisioned with test accounts. Three different mechanisms can be used for this:
+- **Admin Account** - By configuring the username and password of a pre-existing administrative user, using the `adminAccountUsername` and `adminAccountPassword` configuration options, three test accounts will be created using [XEP-0133: Service Administration](https://xmpp.org/extensions/xep-0133.html) functionality.
+- **Explicit Test Accounts** - You can configure three pre-existing accounts that will be used for testing, using the `accountOneUsername`, `accountOnePassword`, `accountTwoUsername`, `accountTwoPassword`, `accountThreeUsername` and `accountThreePassword` configuration options.
+- **In-Band Registration** - If no admin account and no explicit tests accounts are provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
+
+For more information on provisioning accounts, consult the ['Test Account Provisioning' guide](https://xmpp-interop-testing.github.io/documentation/provisioning-accounts).
 
 ## Basic Configuration
 
