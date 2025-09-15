@@ -25,6 +25,30 @@ parameters:
     type: string
     description: 'Password for the admin account.'
     default: ''
+  accountOneUsername:
+    type: string
+    description: 'The first account name of a set of three accounts used for testing.'
+    default: ''
+  accountOnePassword:
+    type: string
+    description: 'The password of the accountOneUsername account'
+    default: ''
+  accountTwoUsername:
+    type: string
+    description: 'The second account name of a set of three accounts used for testing.'
+    default: ''
+  accountTwoPassword:
+    type: string
+    description: 'The password of the accountTwoUsername account'
+    default: ''
+  accountThreeUsername:
+    type: string
+    description: 'The third account name of a set of three accounts used for testing.'
+    default: ''
+  accountThreePassword:
+    type: string
+    description: 'The password of the accountThreeUsername account'
+    default: ''
   disabledSpecifications:
     type: string
     description: 'A comma-separated list of specifications (not case-sensitive) that are to be skipped. For example: XEP-0045,XEP-0060'
@@ -53,6 +77,12 @@ steps:
       timeout: << parameters.timeout >>
       adminAccountUsername: << parameters.adminAccountUsername >>
       adminAccountPassword: << parameters.adminAccountPassword >>
+      accountOneUsername: << parameters.accountOneUsername >>
+      accountOnePassword: << parameters.accountOnePassword >>
+      accountTwoUsername: << parameters.accountTwoUsername >>
+      accountTwoPassword: << parameters.accountTwoPassword >>
+      accountThreeUsername: << parameters.accountThreeUsername >>
+      accountThreePassword: << parameters.accountThreePassword >>
       disabledSpecifications: << parameters.disabledSpecifications >>
       disabledTests: << parameters.disabledTests >>
       enabledSpecifications: << parameters.enabledSpecifications >>
