@@ -20,7 +20,7 @@ release-filters: &release-filters
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
 jobs:
-  command-test:
+  command-test-admin:
     docker:
       - image: cimg/openjdk:17.0
     steps:
@@ -48,12 +48,78 @@ jobs:
           enabledSpecifications: 'XEP-0115,XEP-0199,XEP-0352'
       - store_artifacts:
           path: ./output
-          destination: test-output
+          destination: test-output-admin
+
+  command-test-accounts:
+    docker:
+      - image: cimg/openjdk:17.0
+    steps:
+      - checkout
+      - run:
+          name: Fetch Openfire
+          command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v5.0.1/openfire_5_0_1.tar.gz" -o openfire.tar.gz
+      - run:
+          name: 'Extract Openfire'
+          command: tar -xzf openfire.tar.gz
+      - run:
+          name: 'Run Openfire'
+          command: |
+            .circleci/scripts/startCIServer.sh -h "example.org" -b "openfire"
+            sleep 6000
+          background: true
+      - run:
+          name: 'Wait for Openfire Admin Console to be available'
+          command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9090/login.jsp
+
+      # After lots of setup, test the command
+      - tests/test:
+          accountOneUsername: 'jane'
+          accountOnePassword: 'secret'
+          accountTwoUsername: 'juan'
+          accountTwoPassword: 'secret'
+          accountThreeUsername: 'john'
+          accountThreePassword: 'secret'
+          enabledSpecifications: 'XEP-0115,XEP-0199,XEP-0352'
+      - store_artifacts:
+          path: ./output
+          destination: test-output-accounts
+
+  command-test-ibr:
+    docker:
+      - image: cimg/openjdk:17.0
+    steps:
+      - checkout
+      - run:
+          name: Fetch Openfire
+          command: curl -L "https://github.com/igniterealtime/Openfire/releases/download/v5.0.1/openfire_5_0_1.tar.gz" -o openfire.tar.gz
+      - run:
+          name: 'Extract Openfire'
+          command: tar -xzf openfire.tar.gz
+      - run:
+          name: 'Run Openfire'
+          command: |
+            .circleci/scripts/startCIServer.sh -h "example.org" -b "openfire"
+            sleep 6000
+          background: true
+      - run:
+          name: 'Wait for Openfire Admin Console to be available'
+          command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9090/login.jsp
+
+      # After lots of setup, test the command
+      - tests/test:
+          enabledSpecifications: 'XEP-0115,XEP-0199,XEP-0352'
+      - store_artifacts:
+          path: ./output
+          destination: test-output-ibr
 
 workflows:
   test-deploy:
     jobs:
-      - command-test:
+      - command-test-admin:
+          filters: *filters
+      - command-test-accounts:
+          filters: *filters
+      - command-test-ibr:
           filters: *filters
       - orb-tools/pack:
           filters: *release-filters
@@ -64,6 +130,8 @@ workflows:
           # There's no test of the job here, but that's just a wrapper for the command.
           requires:
             - orb-tools/pack
-            - command-test
+            - command-test-admin
+            - command-test-accounts
+            - command-test-ibr
           context: orb-publishing
           filters: *release-filters
