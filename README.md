@@ -46,7 +46,7 @@ The Orb can be configured using the following inputs:
 To be able to run the tests, the server that is being tested needs to be provisioned with test accounts. Three different mechanisms can be used for this:
 - **Admin Account** - By configuring the username and password of a pre-existing administrative user, using the `adminAccountUsername` and `adminAccountPassword` configuration options, three test accounts will be created using [XEP-0133: Service Administration](https://xmpp.org/extensions/xep-0133.html) functionality.
 - **Explicit Test Accounts** - You can configure three pre-existing accounts that will be used for testing, using the `accountOneUsername`, `accountOnePassword`, `accountTwoUsername`, `accountTwoPassword`, `accountThreeUsername` and `accountThreePassword` configuration options.
-- **In-Band Registration** - If no admin account and no explicit tests accounts are provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
+- **In-Band Registration** - If no admin account and no explicit test accounts are provided, in-band registration ([XEP-0077](https://xmpp.org/extensions/xep-0077.html)) will be used to provision accounts.
 
 For more information on provisioning accounts, consult the ['Test Account Provisioning' guide](https://xmpp-interop-testing.github.io/documentation/provisioning-accounts).
 
