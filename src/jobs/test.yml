@@ -65,6 +65,10 @@ parameters:
     type: string
     description: 'Comma-separated list of tests that are to be run (eg: "EntityCapsTest,SoftwareInfoIntegrationTest")'
     default: ''
+  failOnImpossibleTest:
+    type: string
+    description: 'If set to "true", fails the test run if any configured tests were impossible to execute.'
+    default: 'false'
   logDir:
     type: string
     description: 'The directory in which the test output and logs are to be stored. This directory will be created, if it does not already exist.'
@@ -87,4 +91,5 @@ steps:
       disabledTests: << parameters.disabledTests >>
       enabledSpecifications: << parameters.enabledSpecifications >>
       enabledTests: << parameters.enabledTests >>
+      failOnImpossibleTest: << parameters.failOnImpossibleTest >>
       logDir: << parameters.logDir >>
