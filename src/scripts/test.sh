@@ -18,6 +18,7 @@ DISABLED_SPECIFICATIONS=$(circleci env subst "${PARAM_DISABLED_SPECIFICATIONS}")
 DISABLED_TESTS=$(circleci env subst "${PARAM_DISABLED_TESTS}")
 ENABLED_SPECIFICATIONS=$(circleci env subst "${PARAM_ENABLED_SPECIFICATIONS}")
 ENABLED_TESTS=$(circleci env subst "${PARAM_ENABLED_TESTS}")
+FAIL_ON_IMPOSSIBLE_TEST=$(circleci env subst "${PARAM_FAIL_ON_IMPOSSIBLE_TEST}")
 LOG_DIR=$(circleci env subst "${PARAM_LOG_DIR}")
 
 # Download the JAR file
@@ -67,6 +68,9 @@ if [ "$ENABLED_SPECIFICATIONS" != "" ]; then
 fi
 if [ "$ENABLED_TESTS" != "" ]; then
     JAVACMD+=("-Dsinttest.enabledTests=$ENABLED_TESTS")
+fi
+if [ "$FAIL_ON_IMPOSSIBLE_TEST" != "" ]; then
+    JAVACMD+=("-Dsinttest.failOnImpossibleTest=$FAIL_ON_IMPOSSIBLE_TEST")
 fi
 JAVACMD+=("-Dsinttest.testRunResultProcessors=org.igniterealtime.smack.inttest.util.StdOutTestRunResultProcessor,org.igniterealtime.smack.inttest.util.JUnitXmlTestRunResultProcessor")
 JAVACMD+=("-Dsinttest.debugger=org.igniterealtime.smack.inttest.util.ModifiedStandardSinttestDebuggerMetaFactory")
