@@ -34,6 +34,8 @@ jobs:
             FILE_VERSION="${VERSION:1}" # Strip leading 'v'
             echo "Version: $VERSION"
             echo "File version: $FILE_VERSION"
+
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
             echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
         shell: bash
 
