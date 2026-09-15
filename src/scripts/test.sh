@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.7.2
+VERSION=1.8.0
 
 # Get variables from the environment
 HOST=$(circleci env subst "${PARAM_HOST}")
